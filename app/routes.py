@@ -21,7 +21,6 @@ def index():
 
 
 @app.route('/login' ,methods=['GET','POST'])
-@login_required
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('index'))
@@ -31,15 +30,15 @@ def login():
     form_password = form.password.data
 
     if form.validate_on_submit():
-        user = User.query.fitler_by(user=form_username).frist()
+        user = User.query.filter_by(user=form_username).frist()
         password = user.password
-        if user is none or password != form_password:
+        if user is None or password != form_password:
             flash("Invalid username or password")
             return redirect(url_for('login'))
         login_user(user)
         session.permanent = True
         return  redirect(url_for('index'))
-    return render_template('login.html',title='Sign In' ,form =form)
+    return render_template('login.html',title='Sign In',form= form)
 
 @app.route('/logout')
 @login_required

@@ -1,25 +1,32 @@
 
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Home</title>
-</head>
-<body>
-<h2>testing page </h2>
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Home</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--<h2>testing page </h2>-->
 
+<!--</body>-->
+<!--</html>-->
+{% extends 'base.html' %}
+
+{% block head %}
+
+{% endblock %}
+{% block body %}
 <section id='about' >
     {% with message = get_flashed_messages() %}
         {% if messages %}
-            {for message in messages %}
+            {% for message in messages %}
                 {{message}}
             {% endfor %}
         {%  endif  %}
-    {% endif  %}
     {% endwith %}
 
-    <form action="" method="POST">
-        {{ form.hidden.tag() }}
+    <form action="" method="POST" novalidate>
+        {{ form.hidden_tag() }}
 
        <p>
 
@@ -36,14 +43,4 @@
 </section>
 
 
-</body>
-</html>
-<!--{% extends 'login.html' %}-->
-
-
-<!--{% block head %}-->
-
-<!--{% endblock %}-->
-
-<!--{% block body %}-->
-<!--{% endblock %}-->
+{% endblock %}

@@ -6,11 +6,11 @@ from app.models import User
 
 
 ### login ###
-login_manager = LoginManger()
+login_manager = LoginManager()
 login_manager.init_app(app)
 
-def Load_user(User):
-    return User.query.get(int(User))
+def Load_user(user):
+    return User.query.get(int(user))
 
 @app.route('/')
 def index():

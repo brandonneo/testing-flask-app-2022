@@ -3,7 +3,7 @@ from flask_login import login_user,logout_user, current_user, login_required, Lo
 from app import app, db
 from app.forms import LoginForm
 from app.models import User
-
+# from app.functions import *
 
 ### login ###
 login_manager = LoginManager()
@@ -12,6 +12,10 @@ login_manager.init_app(app)
 @login_manager.user_loader
 def Load_user(user):
     return User.query.get(int(user))
+
+# @login_manager.user_loader
+# def Load_user(user):
+#     return User.query.get(user)
 
 @app.route('/')
 def index():
@@ -30,15 +34,26 @@ def login():
     form_password = form.password.data
 
     if form.validate_on_submit():
-        user = User.query.filter_by(user=form_username).frist()
+        user = User.query.filter_by(user=form_username).first()
+
         password = user.password
         if user is None or password != form_password:
             flash("Invalid username or password")
             return redirect(url_for('login'))
         login_user(user)
+
         session.permanent = True
         return  redirect(url_for('index'))
     return render_template('login.html',title='Sign In',form= form)
+
+# @app.route('/roles' ,methods=['GET','POST'])
+# @login_required
+# def roles():
+#     form = RolesForm()
+#     if request.method =="POST":
+#         roles = request.form.get
+
+
 
 @app.route('/logout')
 @login_required

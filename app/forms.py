@@ -7,3 +7,7 @@ class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
     password = PasswordField('Password', validators=[DataRequired()])
     submit = SubmitField("Sign in")
+
+    class RolesForm(FlaskForm):
+        role = StringField('roles', validators=[DataRequired()])
+        submit = SubmitField("Sign in")

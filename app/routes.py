@@ -9,8 +9,8 @@ from app.models import User
 login_manager = LoginManger()
 login_manager.init_app(app)
 
-def Load_user(User_id):
-    return User.query.get(int(User_id))
+def Load_user(User):
+    return User.query.get(int(User))
 
 @app.route('/')
 def index():
